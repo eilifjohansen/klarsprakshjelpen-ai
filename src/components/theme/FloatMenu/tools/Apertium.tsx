@@ -2,35 +2,32 @@ import {useState} from 'react'
 import {BodyLong, Button, Checkbox, CheckboxGroup, Heading, Link, Modal, Textarea} from "@navikt/ds-react";
 import {Privacy} from "./index";
 
-function Apertium(props: { content: any; }) {
-    let open = props.open;
+function Apertium(props: { mySnippet: any; }) {
     let mySnippet = props.mySnippet;
-
-    const [harGodtatt, setHarGodtatt] = useState("")
-/*    const [open, setOpenbox] = useState(open);*/
-
-/*    const [open, setOpen] = useState("");
-    const [mySnippet, setMySnippet] = useState("")*/
-
     let higlighetdwordsModifiedAppertium = mySnippet.replaceAll("\n", "%0A%0A");
     higlighetdwordsModifiedAppertium = higlighetdwordsModifiedAppertium.replaceAll("%0A%0A%0A%0A", "%0A%0A");
 
-    const [harSpørsmål, setHarSprørsmål] = useState(0)
-
     // @ts-ignore
     const handleChange = (val: any[]) => setHarSprørsmål(val);
-
+    const [openapertium, setOpenapertium] = useState(false);
+    const [harSpørsmål, setHarSprørsmål] = useState(0)
     const [harSamtykket, setHarSamtykket] = useState(false)
+    const [harGodtatt, setHarGodtatt] = useState("")
     const handleChangeSamtykke = (val: any[]) => console.log(val);
     const [state, setState] = useState([]);
     const [translatedText, setTranslatedText] = useState('');
 
+    function apertiummodal() {
+        event.preventDefault()
+        setOpenapertium(true)
+    }
+
     const handleChangeSnippet = (event) => {
-        setMySnippet(event.target.value);
+        mySnippet(event.target.value);
     }
 
     function avbryt() {
-        setOpenbox(false)
+        setOpenapertium(false)
         setHarGodtatt("")
         setHarSprørsmål(0)
         setState(["samtykke"]);
@@ -43,7 +40,7 @@ function Apertium(props: { content: any; }) {
     }
 
     function closemodal() {
-        setOpenbox((x) => !x)
+        setOpenapertium((x) => !x)
         setHarGodtatt("")
         setHarSprørsmål(0)
         setTranslatedText("")
@@ -68,70 +65,73 @@ function Apertium(props: { content: any; }) {
     }
 
     return (
-        <Modal
-            open={open}
-            aria-label="Modal demo"
-            onClose={() => closemodal()}
-            aria-labelledby="modal-heading"
-            style={{minWidth: "300px"}}
-        >
-            <Modal.Content>
-                {harGodtatt == "" && (
-                    <>                    <Heading spacing level="1" size="medium" id="modal-heading">
-                        Oversett til nynorsk
-                    </Heading>
-
-                        Vi bruker <Link href="https://wiki.apertium.org/wiki/Apertium"
-                                        target="_blank">Apertium</Link> til å oversette teksten.
-                        <br/><br/>
-                        <Textarea maxRows={5} label="Tekst som sendes til Apertium" value={mySnippet}
-                                  onChange={handleChangeSnippet}/>
-                        <br/>
-                        <div className="språkhjelp-mb-4">
-                            <Privacy content={mySnippet}/>
-                        </div>
-                        <CheckboxGroup
-                            className="språkhjelp-remove-accordion-padding-bottom"
-                            legend="Velg de som passer"
-                            onChange={(v) => setState(v)}
-                            value={state}
-                        >
-                            <Checkbox value="ingen-personinfo">Teksten inneholder ingen
-                                personopplysninger</Checkbox>
-                            <Checkbox value="samtykke">Jeg godtar at Apertium oversetter teksten</Checkbox>
-                        </CheckboxGroup>
-                        <br/>
-                        <Button className="språkhjelp-mr-2" onClick={() => avbryt()}
-                                variant="tertiary">Avbryt</Button>
-                        {state.length != 2 ? (
-                            <Button disabled>Oversett</Button>
-                        ) : (
-                            <Button onClick={() => generer()}>Oversett</Button>
-                        )}
-                    </>
-                )}
-
-                {harGodtatt != "" && (
-                    <>
-                        <Heading spacing level="1" size="medium" id="modal-heading">
-                            Nynorsk oversettelse
+        <>
+            <button onClick={() => apertiummodal()}
+                    className="navds-button navds-button--secondary navds-button--small navds-label--small språkhjelp-nounderline"
+                    style={{textDecoration: "none"}}>Oversett
+            </button>
+            <Modal
+                open={openapertium}
+                aria-label="Modal demo"
+                onClose={() => closemodal()}
+                aria-labelledby="modal-heading"
+                style={{minWidth: "300px"}}
+            >
+                <Modal.Content>
+                    {harGodtatt == "" && (
+                        <>                    <Heading spacing level="1" size="medium" id="modal-heading">
+                            Oversett til nynorsk
                         </Heading>
-                        <BodyLong style={{whiteSpace: "break-spaces"}}>
-                            {translatedText ? (
-                                <>"{translatedText}" - Apertium</>) : (<>En feil oppstod. Prøv igjen på et senere
-                                    tidspunkt.</>
-                            )}
-                        </BodyLong>
-                        {/*                            <ReadMore className="språkhjelp-mt-4" header="Vis orginal tekst">
-                                {higlighetdwords}
-                            </ReadMore>*/}
-                        <br/>
-                        <Button className="språkhjelp-mr-2" onClick={() => avbryt()} variant="primary">Lukk</Button>
-                    </>
-                )}
 
-            </Modal.Content>
-        </Modal>
+                            Vi bruker <Link href="https://wiki.apertium.org/wiki/Apertium"
+                                            target="_blank">Apertium</Link> til å oversette teksten.
+                            <br/><br/>
+                            <Textarea maxRows={5} label="Tekst som sendes til Apertium" value={mySnippet}
+                                      onChange={handleChangeSnippet}/>
+                            <br/>
+                            <div className="språkhjelp-mb-4">
+                                <Privacy content={mySnippet}/>
+                            </div>
+                            <CheckboxGroup
+                                className="språkhjelp-remove-accordion-padding-bottom"
+                                legend="Velg de som passer"
+                                onChange={(v) => setState(v)}
+                                value={state}
+                            >
+                                <Checkbox value="ingen-personinfo">Teksten inneholder ingen
+                                    personopplysninger</Checkbox>
+                                <Checkbox value="samtykke">Jeg godtar at Apertium oversetter teksten</Checkbox>
+                            </CheckboxGroup>
+                            <br/>
+                            <Button className="språkhjelp-mr-2" onClick={() => avbryt()}
+                                    variant="tertiary">Avbryt</Button>
+                            {state.length != 2 ? (
+                                <Button disabled>Oversett</Button>
+                            ) : (
+                                <Button onClick={() => generer()}>Oversett</Button>
+                            )}
+                        </>
+                    )}
+
+                    {harGodtatt != "" && (
+                        <>
+                            <Heading spacing level="1" size="medium" id="modal-heading">
+                                Nynorsk oversettelse
+                            </Heading>
+                            <BodyLong style={{whiteSpace: "break-spaces"}}>
+                                {translatedText ? (
+                                    <>"{translatedText}" - Apertium</>) : (<>En feil oppstod. Prøv igjen på et senere
+                                        tidspunkt.</>
+                                )}
+                            </BodyLong>
+                            <br/>
+                            <Button className="språkhjelp-mr-2" onClick={() => avbryt()} variant="primary">Lukk</Button>
+                        </>
+                    )}
+
+                </Modal.Content>
+            </Modal>
+        </>
     )
 }
 
