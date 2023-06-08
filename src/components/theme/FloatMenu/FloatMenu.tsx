@@ -5,11 +5,11 @@ import {Lix, Apertium, Gpt} from "./tools/index";
 function FloatMenu(props) {
     let editor = props.editor
     let higlighetdwords = props.higlighetdwords
-    let higlighetdwordsModified = higlighetdwords.replaceAll("\n", "%20%20");
-    higlighetdwordsModified = higlighetdwordsModified.replaceAll("%20%20%20%20", "%20%20");
     const dictionaryLink = "https://ordbokene.no/bm,nn/search?q=" + higlighetdwords.toLowerCase()
     const ngramLink = "https://api.nb.no/dhlab/nb_ngram/#ngram/query?terms=" + higlighetdwords.toLowerCase() + "&lang=all&case_sens=0&freq=rel&corpus=avis"
     const datanorgeLink = "https://data.norge.no/concepts?q=" + higlighetdwords.toLowerCase()
+    let higlighetdwordsModified = higlighetdwords.replaceAll("\n", "%20%20");
+    higlighetdwordsModified = higlighetdwordsModified.replaceAll("%20%20%20%20", "%20%20");
     const analyzeLink = "https://navikt.github.io/spraksjekk/?q=" + higlighetdwordsModified
 
     return (

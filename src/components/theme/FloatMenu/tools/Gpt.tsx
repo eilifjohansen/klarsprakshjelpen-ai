@@ -112,7 +112,7 @@ function Gpt(props: { mySnippet: any; }) {
                             Tilpass tekst
                         </Heading>
 
-                            Vi bruker <Link href="https://wiki.Gpt.org/wiki/Gpt"
+                            Vi bruker <Link href="https://no.wikipedia.org/wiki/OpenAI"
                                             target="_blank">OpenAI</Link> til å tilpasse teksten.
                             <br/><br/>
                             <Textarea maxRows={5} label="Tekst som sendes til OpenAI" value={mySnippet}
