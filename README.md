@@ -7,11 +7,7 @@
 
 # Henvendelser
 
-Du kan sende spørsmål til [researchops@nav.no](mailto:researchops@nav.no).
-
-## For NAV-ansatte
-
-Du kan sende spørsmål i [#researchops](https://nav-it.slack.com/archives/C02UGFS2J4B) på Slack, eller til [researchops@nav.no](mailto:researchops@nav.no)
+Du kan sende spørsmål til [eilif@eilifjohansen.no](mailto:eilif@eilifjohansen.n).
 
 # Funksjoner
 
