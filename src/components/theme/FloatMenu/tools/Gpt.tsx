@@ -11,7 +11,7 @@ function Gpt(props: {
     higlighetdwordsModifiedAppertium = higlighetdwordsModifiedAppertium.replaceAll("%0A%0A%0A%0A", "%0A%0A");
 
     const [prompt, setPrompt] = useState("Skriv teksten på klarspråk. Husk å bruke enkle og forståelige ord og uttrykk. Legg til avsnitt der det er naturlig.");
-    const [apikey, setApikey] = useState("");
+    const [apikey, setApikey] = useState("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");
     const [harGodtatt, setHarGodtatt] = useState("");
     const [loading, setLoading] = useState(false);
     const [harSpørsmål, setHarSprørsmål] = useState(0);
@@ -135,9 +135,9 @@ function Gpt(props: {
                                 <Checkbox value="samtykke">Jeg godtar at OpenAI tilpasser teksten</Checkbox>
                             </CheckboxGroup>
                             <br/>
-                            <TextField type="password" label="OpenAI API-nøkkel" value={apikey}
+                        {/*    <TextField type="password" label="OpenAI API-nøkkel" value={apikey}
                                        onChange={handleChangeApikey}/>
-                            <br/>
+                            <br/>*/}
                             <Textarea label="Prompt" value={prompt}
                                       onChange={handleChangePrompt}/>
                             <br/>
