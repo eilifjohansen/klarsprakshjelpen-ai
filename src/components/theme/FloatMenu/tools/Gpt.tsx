@@ -128,7 +128,7 @@ function Gpt(props: { mySnippet: any; }) {
                             >
                                 <Checkbox value="ingen-personinfo">Teksten inneholder ingen
                                     personopplysninger</Checkbox>
-                                <Checkbox value="samtykke">Jeg godtar at OpenAI får tilgang til teksten</Checkbox>
+                                <Checkbox value="samtykke">Jeg godtar at OpenAI tilpasser teksten</Checkbox>
                             </CheckboxGroup>
                             <br/>
                             <TextField type="password" label="OpenAI API-nøkkel" value={apikey}
