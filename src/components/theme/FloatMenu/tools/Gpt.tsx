@@ -7,12 +7,11 @@ function Gpt(props: { mySnippet: any; }) {
     let higlighetdwordsModifiedAppertium = mySnippet.replaceAll("\n", "%0A%0A");
     higlighetdwordsModifiedAppertium = higlighetdwordsModifiedAppertium.replaceAll("%0A%0A%0A%0A", "%0A%0A");
 
-    const [prompt, setPrompt] = useState("Skriv teksten på klarspråk. Husk å bruke enkle og forståelige ord og uttrykk. Legg til avsnitt der det er naturlig.\n" +
-        "kan du som klarspråkspesialist, som tidligere har vært i samme situasjon hjelpe meg til å forstå denne teksten")
-    const [apikey, setApikey] = useState("")
-    const [harGodtatt, setHarGodtatt] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [harSpørsmål, setHarSprørsmål] = useState(0)
+    const [prompt, setPrompt] = useState("Skriv teksten på klarspråk. Husk å bruke enkle og forståelige ord og uttrykk. Legg til avsnitt der det er naturlig.");
+    const [apikey, setApikey] = useState("");
+    const [harGodtatt, setHarGodtatt] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [harSpørsmål, setHarSprørsmål] = useState(0);
     const [message, setMessage] = useState('');
     const [response, setResponse] = useState('');
 
