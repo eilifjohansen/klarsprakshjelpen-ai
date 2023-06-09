@@ -135,9 +135,9 @@ function Gpt(props: {
                                 <Checkbox value="samtykke">Jeg godtar at OpenAI tilpasser teksten</Checkbox>
                             </CheckboxGroup>
                             <br/>
-                        {/*    <TextField type="password" label="OpenAI API-nøkkel" value={apikey}
+                            <TextField type="password" label="OpenAI API-nøkkel" value={apikey}
                                        onChange={handleChangeApikey}/>
-                            <br/>*/}
+                            <br/>
                             <Textarea label="Prompt" value={prompt}
                                       onChange={handleChangePrompt}/>
                             <br/>
