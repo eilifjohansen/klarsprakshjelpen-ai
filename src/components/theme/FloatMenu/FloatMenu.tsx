@@ -1,9 +1,11 @@
 import {Link} from "@navikt/ds-react";
 import {BubbleMenu} from "@tiptap/react";
 import {Lix, Apertium, Gpt} from "./tools/index";
+import { v4 as uuid } from 'uuid';
 
 function FloatMenu(props) {
     let editor = props.editor
+    const unique_id = uuid();
     let higlighetdwords = props.higlighetdwords
     const dictionaryLink = "https://ordbokene.no/bm,nn/search?q=" + higlighetdwords.toLowerCase()
     const ngramLink = "https://api.nb.no/dhlab/nb_ngram/#ngram/query?terms=" + higlighetdwords.toLowerCase() + "&lang=all&case_sens=0&freq=rel&corpus=avis"
@@ -38,7 +40,7 @@ function FloatMenu(props) {
                             style={{textDecoration: "none"}} target="_blank" href={analyzeLink}><Lix
                             content={higlighetdwords}/></Link>
                         <Apertium mySnippet={higlighetdwords}/>
-                        <Gpt mySnippet={higlighetdwords}/>
+                        <Gpt userid={unique_id} mySnippet={higlighetdwords}/>
                     </>
                 )}</>)}
             </BubbleMenu>

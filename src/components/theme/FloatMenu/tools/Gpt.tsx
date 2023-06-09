@@ -2,7 +2,10 @@ import {useState} from 'react'
 import {BodyLong, Button, Checkbox, CheckboxGroup, Heading, Link, Modal, Textarea, TextField} from "@navikt/ds-react";
 import {Privacy} from "./index";
 
-function Gpt(props: { mySnippet: any; }) {
+function Gpt(props: {
+    userid: any;
+    mySnippet: any; }) {
+    const unique_id = props.userid;
     let mySnippet = props.mySnippet;
     let higlighetdwordsModifiedAppertium = mySnippet.replaceAll("\n", "%0A%0A");
     higlighetdwordsModifiedAppertium = higlighetdwordsModifiedAppertium.replaceAll("%0A%0A%0A%0A", "%0A%0A");
@@ -34,7 +37,8 @@ function Gpt(props: { mySnippet: any; }) {
                     temperature: 1,
                     top_p: 1,
                     frequency_penalty: 0,
-                    presence_penalty: 0
+                    presence_penalty: 0,
+                    user: unique_id
                 }),
             });
             setLoading(true)
@@ -144,7 +148,7 @@ function Gpt(props: { mySnippet: any; }) {
                             ) : (
                                 <>
                                     {!loading && (<Button onClick={() => generer()}>Neste</Button>)}
-                                    {loading == true && (<Button loading>Loading</Button>)}
+                                    {loading == true && (<Button onClick={() => generer()}>Neste</Button>)}
                                 </>
                             )}
                         </>

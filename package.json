@@ -22,7 +22,8 @@
     "prosemirror-schema-list": "^1.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "typo-js-ts": "^2.0.4"
+    "typo-js-ts": "^2.0.4",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/html-to-text": "^8.1.1",
