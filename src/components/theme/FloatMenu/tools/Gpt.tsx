@@ -128,7 +128,7 @@ function Gpt(props: {
                                 <Checkbox value="samtykke">Jeg godtar at OpenAI tilpasser teksten</Checkbox>
                             </CheckboxGroup>
                             <br/>
-                            <Textarea label="Prompt" value={prompt}
+                            <Textarea label="Hva vil du skal gjøres med teksten?" value={prompt}
                                       onChange={handleChangePrompt}/>
                             <br/>
                             <Button className="språkhjelp-mr-2" onClick={() => avbryt()}
