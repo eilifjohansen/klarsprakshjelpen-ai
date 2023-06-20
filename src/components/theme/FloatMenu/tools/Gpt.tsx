@@ -11,7 +11,6 @@ function Gpt(props: {
     higlighetdwordsModifiedAppertium = higlighetdwordsModifiedAppertium.replaceAll("%0A%0A%0A%0A", "%0A%0A");
 
     const [prompt, setPrompt] = useState("Skriv teksten på klarspråk. Husk å bruke enkle og forståelige ord og uttrykk. Legg til avsnitt der det er naturlig.");
-    const [apikey, setApikey] = useState("");
     const [harGodtatt, setHarGodtatt] = useState("");
     const [loading, setLoading] = useState(false);
     const [harSpørsmål, setHarSprørsmål] = useState(0);
@@ -21,14 +20,12 @@ function Gpt(props: {
     const handleTranslate = async () => {
         setLoading(true)
         try {
-            const apiUrl = 'https://api.openai.com/v1/completions';
-            const apiKey = apikey;
+            const apiUrl = 'https://hook.eu1.make.com/8rpfh364ojnjjl3a683egtlyvn5nlljr';
             console.log("Send")
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     model: "text-davinci-003",
@@ -62,10 +59,6 @@ function Gpt(props: {
     const [state, setState] = useState([]);
     const [translatedText, setTranslatedText] = useState('');
     const [opengpt, setOpengpt] = useState(false);
-
-    const handleChangeApikey = (event) => {
-        setApikey(event.target.value);
-    }
 
     const handleChangePrompt = (event) => {
         setPrompt(event.target.value);
@@ -134,9 +127,6 @@ function Gpt(props: {
                                     personopplysninger</Checkbox>
                                 <Checkbox value="samtykke">Jeg godtar at OpenAI tilpasser teksten</Checkbox>
                             </CheckboxGroup>
-                            <br/>
-                            <TextField type="password" label="OpenAI API-nøkkel" value={apikey}
-                                       onChange={handleChangeApikey}/>
                             <br/>
                             <Textarea label="Prompt" value={prompt}
                                       onChange={handleChangePrompt}/>
