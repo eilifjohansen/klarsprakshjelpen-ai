@@ -6,6 +6,10 @@
     margin-right: 10px;
 }
 
+#feedback-block a {
+    color: #005887;
+}
+
 #feedback-block {
     margin-bottom: 5rem;
 }
