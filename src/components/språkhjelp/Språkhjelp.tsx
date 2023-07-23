@@ -18,7 +18,7 @@ function Resultbox(props) {
     return (
         <>
             {value.length == 0 ? (
-                    <Alert variant="info">Sett inn tekst for å få opp resultater.</Alert>) :
+                    <Alert variant="info">Sett inn tekst for å få opp resultater. <br /><br/>Marker tekst og velg "tilpass tekst" for å prøve Klarspråkshjelpen med KI.</Alert>) :
                 (
                     <>
                         <Accordion className="språkhjelp-navds-accordion">
